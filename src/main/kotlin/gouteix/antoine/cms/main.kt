@@ -1,6 +1,8 @@
 package gouteix.antoine.cms
 
 import freemarker.cache.ClassTemplateLoader
+import gouteix.antoine.cms.inte.ArticleListPresenter
+import gouteix.antoine.cms.inte.ArticlePresenter
 import gouteix.antoine.cms.model.Article
 import gouteix.antoine.cms.tpl.IndexContext
 import io.ktor.application.call
@@ -31,14 +33,17 @@ fun main(){
             static("/static") {
                 resources("static")
             }
+            static("/static/img"){
+                resources("static/img")
+            }
 
             get("article/{id}") {
                 val controller = appComponents.getArticlePresenter(object : ArticlePresenter.View {
                     override fun displayArticle(article: Article) {
-                    launch {
-                        call.respond(FreeMarkerContent("article.ftl", article, "e"))
+                        launch {
+                            call.respond(FreeMarkerContent("article.ftl", article, "e"))
+                        }
                     }
-                }
                     override fun displayNotFound() {
                         launch {
                             call.respond(HttpStatusCode.NotFound)
@@ -52,20 +57,21 @@ fun main(){
                     controller.start(id)
                 }
             }
+            get("/login"){
+                call.respond(FreeMarkerContent("connexion.ftl", context, "e"))
+            }
 
-        get("/") {
-            val controller = appComponents.getArticleListPresenter(object : ArticleListPresenter.View {
-                override fun displayArticleList(list: List<Article>){
-                    val context = IndexContext(list)
-                    launch {
-                        call.respond(FreeMarkerContent("index.ftl", context, "e"))
+            get("/") {
+                val controller = appComponents.getArticleListPresenter(object : ArticleListPresenter.View {
+                    override fun displayArticleList(list: List<Article>){
+                        val context = IndexContext(list)
+                        launch {
+                            call.respond(FreeMarkerContent("index.ftl", context, "e"))
+                        }
                     }
-                }
-            })
-            controller.start()
+                })
+                controller.start()
             }
         }
     }.start(wait = true)
 }
-
-

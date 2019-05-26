@@ -1,5 +1,7 @@
 package gouteix.antoine.cms
 
+import gouteix.antoine.cms.inte.ArticleListPresenter
+import gouteix.antoine.cms.inte.ArticlePresenter
 import gouteix.antoine.cms.pres.ArticleListPresenterImpl
 import gouteix.antoine.cms.pres.ArticlePresenterImpl
 

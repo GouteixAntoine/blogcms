@@ -1,4 +1,4 @@
-package gouteix.antoine.cms
+package gouteix.antoine.cms.inte
 
 import gouteix.antoine.cms.model.Article
 

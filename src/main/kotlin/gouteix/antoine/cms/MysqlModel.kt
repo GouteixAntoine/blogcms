@@ -31,10 +31,10 @@ class MysqlModel(val pool: ConnectionPool) : Model {
                 stmt.executeQuery().use { result ->
                     if (result.next()) {
                         return Article(result.getInt("id"), result.getString("title"), result.getString("text"))
-                        }
                     }
                 }
             }
+        }
         return null
     }
 }

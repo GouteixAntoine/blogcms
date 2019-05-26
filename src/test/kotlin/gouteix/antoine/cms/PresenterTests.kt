@@ -1,12 +1,12 @@
 package gouteix.antoine.cms
 
 import com.nhaarman.mockitokotlin2.*
+import gouteix.antoine.cms.inte.ArticleListPresenter
+import gouteix.antoine.cms.inte.ArticlePresenter
 import gouteix.antoine.cms.model.Article
 import gouteix.antoine.cms.pres.ArticleListPresenterImpl
 import gouteix.antoine.cms.pres.ArticlePresenterImpl
-import junit.framework.Assert.*
 import org.junit.Test
-import java.util.Collections.list
 
 internal class PresenterTests {
 
